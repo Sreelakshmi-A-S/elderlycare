@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Chat</title>
+    <style>
+        body {
+            background-image: url("static/bg1.jpg");
+			background-size: cover;
+			background-repeat: no-repeat;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #header {
+            color: #242020;
+            padding: 20px;
+            text-align: center;
+            font: 80px;;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        #content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+        }
+        #start-call-btn {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #1cb4ad;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: background-color 0.3s ease;
+        }
+
+        #start-call-btn:hover {
+            background-color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>Elderly Care</h1>
+    </div>
+    
+    <div id="content">
+        <button id="start-call-btn"> Start </button>
+    </div>
+
+    <script>
+        document.getElementById("start-call-btn").addEventListener("click", function() {
+            window.location.href = "/video_call"; 
+        });
+    </script>
+</body>
+</html>

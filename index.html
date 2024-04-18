@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Elderly Care</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        #header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #main-container {
+            display: flex;
+            margin-top: 30px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #video-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #video {
+            max-width: 100%; 
+            border: 5px solid #333;
+        }
+
+        #prediction-container {
+            max-width: 400px;
+            flex: 1;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            margin-right: 110px;
+            max-height: 400px;
+            margin-top: 50px;
+        }
+        
+
+        #prediction-container p {
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+        #end-call-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #d9534f;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: background-color 0.3s ease;
+        }
+        #chatbot-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #d9534f;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: background-color 0.3s ease;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #button-container {
+            
+            align-items: center;
+            margin-left: 450px;
+
+        }
+
+        #end-call-btn:hover {
+            background-color: #c9302c;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>Elderly Care</h1>
+    </div>
+
+    <div id="main-container">
+        <div id="video-container">
+            <img id="video" src="{{ url_for('video_feed') }}">
+        </div>
+
+        <div id="prediction-container">
+            <p id="letter">Predicted Letter: </p>
+            <p id="word">Predicted Word: </p>
+            <p id="sentence">Predicted Sentence: </p>
+            
+        </div>
+        
+    </div>
+    <div id="button-container">
+    <button id="end-call-btn">home</button>
+    <button id="chatbot-btn">Chat Bot</button>
+  </div>
+
+    <script>
+        document.getElementById("end-call-btn").addEventListener("click", function() {
+            // Add the logic to end the call and navigate back to the home page here
+            window.location.href = "/"; // Redirect to the home page
+        });
+
+        document.getElementById("chatbot-btn").addEventListener("click", function() {
+            // Add the logic to end the call and navigate back to the home page here
+            window.location.href = "/chatbot"; // Redirect to the home page
+        });
+
+        function fetchData() {
+            fetch("/fetch_data")
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("letter").textContent = "Detected heart rate: " + data.letter;
+                    document.getElementById("word").textContent = "Detected temperature: " + data.word;
+                    document.getElementById("sentence").textContent = "Gesture: " + data.sentence;
+                })
+                .catch(error => {
+                    console.log("Error:", error);
+                });
+        }
+
+        function updateVideoFeed() {
+            document.getElementById("video").src = "{{ url_for('video_feed') }}";
+            fetchData();
+        }
+
+        setInterval(updateVideoFeed, 1000);
+    </script>
+</body>
+</html>

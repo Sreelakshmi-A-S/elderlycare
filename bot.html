@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="">
+    <link id="two" rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link id="three" rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <style>
+        /* CSS styles will be here */
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            function createDynamicURL() {
+                return parseInt(Math.random() * 1000000000000);
+            }
+            var url = "/static/style.css?q=" + createDynamicURL().toString();
+            $("link[rel='stylesheet']").attr("href", url);
+
+            function getBotResponse() {
+                var rawText = $("#textInput").val();
+                var userHtml = '<p class="userText"><i class="fa fa-user"></i><span>' + rawText + '</span></p>';
+                $("#textInput").val("");
+                $("#chatbox").append(userHtml).animate({ scrollTop: $("#chatbox").prop("scrollHeight") }, 700);
+                $.get("/get", { msg: rawText }).done(function(data) {
+                    var botHtml = '<p class="botText"><i class="fa fa-robot"></i><span>' + data + '</span></p>';
+                    $("#chatbox").append(botHtml).animate({ scrollTop: $("#chatbox").prop("scrollHeight") }, 700);
+                });
+            }
+            $("#textInput").keypress(function(e) {
+                if(e.which == 13) {
+                    getBotResponse();
+                }
+            });
+            $("#buttonInput").click(getBotResponse);
+        });
+    </script>
+</head>
+<body>
+    <div id="container">
+        <h1>Elderly Care Assistant</h1>
+        <div id="chatbox">
+            <p class="botText"><span>Hi! please ask queries related to this app.</span></p>
+        </div>
+        <div id="userInput">
+            <input id="textInput" type="text" name="msg" placeholder="Message">
+            <button id="buttonInput" type="submit"><i class="fa fa-send"></i></button>
+            <a id="buttonhome" href="/" class="btn" style="text-decoration: none; color: inherit;"></a>
+        </div>
+    </div>
+</body>
+</html>
