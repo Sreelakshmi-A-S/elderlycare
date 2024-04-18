@@ -1,0 +1,161 @@
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #333;
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    background-color: #222;
+    color: #FFD700; /* Gold for an elegant contrast */
+    margin: 0;
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+#container {
+    background-color: #444;
+    width: 95%;
+    max-width: 600px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+#chatbox {
+    height: 500px;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #555; /* Slightly lighter shade for the chatbox */
+}
+
+#userInput {
+    display: flex;
+    padding: 10px;
+    background-color: #444; /* Harmony with the container */
+}
+
+#textInput {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-right: 10px;
+}
+#buttonhome {
+    background-color: #FFD700;
+    color: #333;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 7px;
+}
+
+#buttonhome:hover {
+    opacity: 0.9;
+}
+
+
+#buttonInput {
+    background-color: #FFD700; /* Gold for visibility */
+    color: #333;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#buttonInput:hover {
+    opacity: 0.9;
+}
+
+.userText, .botText {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.userText span, .botText span {
+    max-width: 80%;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10px;
+    color: #333;
+    font-size: 16px;
+}
+
+.userText span {
+    background-color: #FFD700; /* Gold color for user messages */
+    order: 2;
+    margin-left: auto;
+}
+
+.userText i, .botText i {
+    color: #ddd;
+    margin: 0 10px;
+}
+
+.botText span {
+    background-color: #777; /* Darker background for bot messages */
+    color: #010304;
+    order: 1;
+}
+
+.botText i.fa-robot {
+    order: 0;
+}
+
+.userText i.fa-user {
+    order: 3;
+}
+
+#textInput {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #FFD700;
+    background-color: #555;
+    color: #fff;
+}
+
+#buttonInput {
+    border: 2px solid #FFD700; /* Gold border for the button */
+    background-color: #666; /* Dark background for the button */
+    color: #FFD700; /* Gold color text */
+}
+
+#buttonInput:hover {
+    background-color: #777; /* Slightly lighter background on hover */
+}
+
+/* Custom scrollbar for chatbox */
+#chatbox::-webkit-scrollbar {
+    width: 8px;
+}
+
+#chatbox::-webkit-scrollbar-thumb {
+    background: #FFD700; 
+    border-radius: 4px;
+}
+
+#chatbox::-webkit-scrollbar-track {
+    background: #666;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 24px; /* Smaller text on smaller screens */
+    }
+
+    .userText span, .botText span {
+        font-size: 14px; /* Smaller font size for chat messages on smaller screens */
+    }
+}
